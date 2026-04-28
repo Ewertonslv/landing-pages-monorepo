@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import './index.css';
 
+// ─── CONFIG — edite aqui antes de publicar ────────────────────────────────────
+const WHATSAPP_NUMBER = '5511987654321'; // 55 + DDD + número, sem espaços ou traços
+const CALENDLY_URL    = 'https://calendly.com/seu-username/consultoria';
+// ─────────────────────────────────────────────────────────────────────────────
+
 const templates = [
   {
     id: 1,
@@ -107,7 +112,7 @@ function App() {
   const [formLoading, setFormLoading] = useState(false);
 
   const handleScheduleCall = () => {
-    window.open('https://calendly.com/seu-username/consultoria', '_blank');
+    window.open(CALENDLY_URL, '_blank');
   };
 
   return (
