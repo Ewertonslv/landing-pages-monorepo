@@ -1,0 +1,14 @@
+# Ignore all packages except portfolio-showcase
+packages/landing-saas
+packages/landing-service
+packages/landing-ecommerce
+packages/landing-curso-online
+packages/landing-consultoria
+packages/landing-webinar
+
+# Ignore documentation
+docs/
+.git/
+.pytest_cache/
+__pycache__/
+node_modules/

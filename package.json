@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "dev": "lerna run dev --parallel",
-    "build": "lerna run build --parallel",
+    "build": "cd portfolio-showcase && npm install && npm run build",
     "lint": "lerna run lint --parallel",
     "start": "lerna run start --parallel"
   },

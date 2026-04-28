@@ -419,4 +419,83 @@ function App() {
                     />
                   </div>
                 </div>
-                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Empresa/Nicho</label>
+                  <input
+                    type="text"
+                    value={formData.empresa}
+                    onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
+                    placeholder="Ex: Consultoria, Coaching, E-commerce"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Qual é seu interesse?</label>
+                  <select
+                    value={formData.interesse}
+                    onChange={(e) => setFormData({ ...formData, interesse: e.target.value })}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  >
+                    <option value="">Selecione uma opção</option>
+                    <option value="individual">Projeto Individual (R$ 2.997)</option>
+                    <option value="agencia">Plano Agência (R$ 8.997/mês)</option>
+                    <option value="whitelabel">White Label (R$ 15.997/mês)</option>
+                    <option value="duvidas">Dúvidas / Mais Informações</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Mensagem (opcional)</label>
+                  <textarea
+                    rows="3"
+                    value={formData.mensagem}
+                    onChange={(e) => setFormData({ ...formData, mensagem: e.target.value })}
+                    placeholder="Conte um pouco sobre seu desafio..."
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  disabled={formLoading}
+                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50"
+                >
+                  {formLoading ? 'Enviando...' : 'Enviar e Agendar Chamada'}
+                </button>
+              </form>
+
+              <div className="mt-8 pt-8 border-t border-gray-200">
+                <div className="grid md:grid-cols-2 gap-6 text-center">
+                  <div>
+                    <div className="text-gray-600 text-sm mb-1">📱 WhatsApp</div>
+                    <a href="https://wa.me/551198765432" className="font-bold text-purple-600 hover:text-purple-700">Enviar mensagem</a>
+                  </div>
+                  <div>
+                    <div className="text-gray-600 text-sm mb-1">✉️ Email</div>
+                    <a href="mailto:ewertoncom297@gmail.com" className="font-bold text-purple-600 hover:text-purple-700">ewertoncom297@gmail.com</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 mt-20">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h3 className="text-2xl font-bold mb-4">Pronto para aumentar suas conversões?</h3>
+          <button
+            onClick={handleScheduleCall}
+            className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-lg font-semibold hover:shadow-lg transition-all"
+          >
+            Agendar Demonstração Gratuita
+          </button>
+          <div className="mt-8 text-gray-400 text-sm">
+            © 2026 Landing Pages - Que Vendem. Todos os direitos reservados.
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+export default App;

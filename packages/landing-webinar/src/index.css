@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  @apply cursor-pointer transition-all duration-300;
+}
+
+.btn-primary {
+  @apply bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg text-lg;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(231, 76, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+  }
+}
