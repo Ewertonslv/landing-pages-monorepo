@@ -102,6 +102,7 @@ const pricingPlans = [
 function App() {
   const [selectedTemplate, setSelectedTemplate] = useState(templates[0]);
   const [activeSection, setActiveSection] = useState('templates');
+  const [roi, setRoi] = useState({ visitors: 1000, currentRate: 1, ticket: 497 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -113,6 +114,13 @@ function App() {
   const handleScheduleCall = () => {
     window.open(CALENDLY_URL, '_blank');
   };
+
+  const roiBeforeSales   = Math.floor(roi.visitors * roi.currentRate / 100);
+  const roiAfterSales    = Math.floor(roi.visitors * 5 / 100);
+  const roiBeforeRevenue = roiBeforeSales * roi.ticket;
+  const roiAfterRevenue  = roiAfterSales  * roi.ticket;
+  const roiGain          = roiAfterRevenue - roiBeforeRevenue;
+  const roiPercent       = Math.round((roiGain / 2997) * 100);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -356,30 +364,78 @@ function App() {
 
             {/* ROI Calculator */}
             <div className="mt-16 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Calculadora de ROI</h3>
-              <div className="grid md:grid-cols-2 gap-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Calculadora de ROI</h3>
+              <p className="text-gray-600 mb-6">Digite seus números e veja o impacto real</p>
+
+              <div className="grid md:grid-cols-3 gap-4 mb-8">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Visitantes/mês</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={roi.visitors}
+                    onChange={(e) => setRoi({ ...roi, visitors: Number(e.target.value) || 0 })}
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Taxa de conversão atual (%)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="0.1"
+                    value={roi.currentRate}
+                    onChange={(e) => setRoi({ ...roi, currentRate: Number(e.target.value) || 0 })}
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Ticket médio (R$)</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={roi.ticket}
+                    onChange={(e) => setRoi({ ...roi, ticket: Number(e.target.value) || 0 })}
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8 mb-6">
                 <div>
                   <h4 className="font-bold text-gray-900 mb-4">Situação Atual</h4>
                   <div className="space-y-3 bg-white rounded-lg p-4">
-                    <div>Taxa de conversão: <strong>1%</strong></div>
-                    <div>1.000 visitantes = <strong>10 vendas</strong></div>
-                    <div>Ticket R$ 497 = <strong className="text-red-600">R$ 4.970</strong></div>
+                    <div>Taxa de conversão: <strong>{roi.currentRate}%</strong></div>
+                    <div>{roi.visitors.toLocaleString('pt-BR')} visitantes = <strong>{roiBeforeSales.toLocaleString('pt-BR')} vendas</strong></div>
+                    <div>Receita: <strong className="text-red-600">R$ {roiBeforeRevenue.toLocaleString('pt-BR')}</strong></div>
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 mb-4">Com Nossa LP</h4>
+                  <h4 className="font-bold text-gray-900 mb-4">Com Nossa LP (5%)</h4>
                   <div className="space-y-3 bg-white rounded-lg p-4">
                     <div>Taxa de conversão: <strong className="text-green-600">5%</strong></div>
-                    <div>1.000 visitantes = <strong className="text-green-600">50 vendas</strong></div>
-                    <div>Ticket R$ 497 = <strong className="text-green-600">R$ 24.850</strong></div>
+                    <div>{roi.visitors.toLocaleString('pt-BR')} visitantes = <strong className="text-green-600">{roiAfterSales.toLocaleString('pt-BR')} vendas</strong></div>
+                    <div>Receita: <strong className="text-green-600">R$ {roiAfterRevenue.toLocaleString('pt-BR')}</strong></div>
                   </div>
                 </div>
               </div>
-              <div className="mt-6 text-center bg-green-600 text-white p-6 rounded-lg">
-                <div className="text-sm font-medium">Ganho Mensal</div>
-                <div className="text-4xl font-bold">R$ 19.880</div>
-                <div className="text-sm mt-2">ROI de 664% no primeiro mês</div>
+
+              <div className="bg-green-600 text-white p-6 rounded-lg text-center mb-4">
+                <div className="text-sm font-medium">Ganho Mensal Estimado</div>
+                <div className="text-4xl font-bold">R$ {roiGain.toLocaleString('pt-BR')}</div>
+                <div className="text-sm mt-2">ROI estimado de {roiPercent.toLocaleString('pt-BR')}% no primeiro mês</div>
               </div>
+
+              <button
+                onClick={() => {
+                  const msg = `Olá! Calculei meu ROI: com ${roi.visitors} visitantes/mês e ticket R$ ${roi.ticket}, passando de ${roi.currentRate}% para 5% de conversão, ganho R$ ${roiGain.toLocaleString('pt-BR')}/mês. Quero saber mais!`;
+                  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+                }}
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold transition-colors"
+              >
+                Quero esse ROI — Falar no WhatsApp
+              </button>
             </div>
           </section>
         )}
