@@ -169,12 +169,12 @@ function App() {
 
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold">500+</div>
-              <div className="text-purple-200">Consultores/Coaches</div>
+              <div className="text-4xl font-bold">6</div>
+              <div className="text-purple-200">Templates prontos</div>
             </div>
             <div>
-              <div className="text-4xl font-bold">4.2%</div>
-              <div className="text-purple-200">Conversão média</div>
+              <div className="text-4xl font-bold">3–7%</div>
+              <div className="text-purple-200">Conversão esperada</div>
             </div>
             <div>
               <div className="text-4xl font-bold">5-7</div>
@@ -385,7 +385,7 @@ function App() {
         {activeSection === 'contato' && (
           <section className="max-w-2xl mx-auto">
             <h2 className="text-3xl font-bold mb-2 text-center">Agendar Demonstração</h2>
-            <p className="text-gray-600 mb-8 text-center">Reserve 15 minutos para descobrir como 500+ consultores aumentaram suas vendas</p>
+            <p className="text-gray-600 mb-8 text-center">Reserve 15 minutos para ver os templates ao vivo e entender como podemos aumentar sua conversão</p>
 
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <form
