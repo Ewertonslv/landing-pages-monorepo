@@ -11,7 +11,7 @@ export default function Hero() {
           {content.hero.subheadline}
         </p>
 
-        <button className="btn-secondary mb-4">
+        <button onClick={() => content.hero.ctaUrl && window.open(content.hero.ctaUrl, '_blank')} className="btn-secondary mb-4">
           {content.hero.cta}
         </button>
 

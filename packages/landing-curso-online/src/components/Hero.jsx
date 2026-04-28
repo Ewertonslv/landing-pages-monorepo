@@ -48,10 +48,10 @@ export function Hero({ data }) {
 
             {/* CTAs */}
             <div className="space-y-4 pt-4">
-              <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-purple-900 px-8 py-5 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-2xl">
+              <button onClick={() => data.ctaUrl && window.open(data.ctaUrl, '_blank')} className="w-full bg-yellow-400 hover:bg-yellow-300 text-purple-900 px-8 py-5 rounded-lg font-bold text-lg transition-all transform hover:scale-105 shadow-2xl">
                 {data.cta} →
               </button>
-              <button className="w-full border-2 border-purple-400 hover:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-all">
+              <button onClick={() => data.ctaSecondaryUrl && window.open(data.ctaSecondaryUrl, '_blank')} className="w-full border-2 border-purple-400 hover:bg-purple-800 text-white px-8 py-4 rounded-lg font-semibold transition-all">
                 {data.ctaSecondary}
               </button>
             </div>

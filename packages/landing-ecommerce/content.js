@@ -10,6 +10,8 @@ export const content = {
     subheadline: "Roupas premium feitas com 100% de materiais ecológicos",
     cta: "Ver coleção",
     ctaSecondary: "Conhecer nossa história",
+    ctaUrl: '#',         // Substitua: URL da loja/produto principal
+    ctaSecondaryUrl: '#', // Substitua: URL da página sobre/história
     image: "/hero-image.svg"
   },
 

@@ -11,6 +11,8 @@ export const content = {
     subheadline: "O curso mais completo do Brasil para você sair do zero e faturar seus primeiros R$ 10 mil online",
     cta: "Quero garantir minha vaga",
     ctaSecondary: "Assistir aula gratuita",
+    ctaUrl: '#',         // Substitua: URL de checkout/inscrição
+    ctaSecondaryUrl: '#', // Substitua: URL da aula gratuita (YouTube ou similar)
     image: "/hero-curso.jpg",
     videoId: "dQw4w9WgXcQ", // ID do YouTube
     students: "12.847",

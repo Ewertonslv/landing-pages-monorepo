@@ -10,6 +10,8 @@ export const content = {
     subheadline: "Plataforma intuitiva para análise de dados em tempo real",
     cta: "Começar gratuitamente",
     ctaSecondary: "Ver demo",
+    ctaUrl: '#',         // Substitua: URL de cadastro/trial
+    ctaSecondaryUrl: '#', // Substitua: URL de demo ou vídeo
     image: "/hero-image.svg"
   },
 

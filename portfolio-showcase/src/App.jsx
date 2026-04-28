@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 
 // ─── CONFIG — edite aqui antes de publicar ────────────────────────────────────
 const WHATSAPP_NUMBER = '5511987654321'; // 55 + DDD + número, sem espaços ou traços
 const CALENDLY_URL    = 'https://calendly.com/seu-username/consultoria';
+const GA4_ID          = 'G-XXXXXXXXXX';  // Substitua pelo seu Measurement ID do GA4
 // ─────────────────────────────────────────────────────────────────────────────
 
 const templates = [
@@ -110,6 +111,32 @@ function App() {
     interesse: '',
     mensagem: ''
   });
+  const [lgpdAccepted, setLgpdAccepted] = useState(
+    () => localStorage.getItem('lgpd') === '1'
+  );
+
+  const loadGA4 = () => {
+    if (!GA4_ID || GA4_ID === 'G-XXXXXXXXXX') return;
+    if (document.querySelector(`script[src*="${GA4_ID}"]`)) return;
+    const script = document.createElement('script');
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
+    script.async = true;
+    document.head.appendChild(script);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function() { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA4_ID);
+  };
+
+  useEffect(() => {
+    if (lgpdAccepted) loadGA4();
+  }, []);
+
+  const handleLgpdAccept = () => {
+    localStorage.setItem('lgpd', '1');
+    setLgpdAccepted(true);
+    loadGA4();
+  };
 
   const handleScheduleCall = () => {
     window.open(CALENDLY_URL, '_blank');
@@ -555,6 +582,22 @@ function App() {
           </section>
         )}
       </div>
+
+      {/* LGPD Consent Banner */}
+      {!lgpdAccepted && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-900 text-white px-6 py-4 z-50 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xl border-t border-gray-700">
+          <p className="text-sm text-center sm:text-left text-gray-300">
+            Este site coleta dados de contato em conformidade com a <strong className="text-white">LGPD</strong> (Lei 13.709/18).
+            Seus dados são usados apenas para responder seu contato e nunca compartilhados com terceiros.
+          </p>
+          <button
+            onClick={handleLgpdAccept}
+            className="whitespace-nowrap bg-purple-600 hover:bg-purple-500 text-white px-6 py-2 rounded-lg font-semibold text-sm transition-colors"
+          >
+            Entendi e Aceito
+          </button>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12 mt-20">

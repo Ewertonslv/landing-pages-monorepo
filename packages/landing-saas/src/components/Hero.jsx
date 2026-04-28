@@ -13,10 +13,10 @@ export function Hero({ data }) {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
+          <button onClick={() => data.ctaUrl && window.open(data.ctaUrl, '_blank')} className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors">
             {data.cta}
           </button>
-          <button className="border-2 border-gray-300 hover:border-gray-400 text-gray-900 px-8 py-4 rounded-lg font-semibold transition-colors">
+          <button onClick={() => data.ctaSecondaryUrl && window.open(data.ctaSecondaryUrl, '_blank')} className="border-2 border-gray-300 hover:border-gray-400 text-gray-900 px-8 py-4 rounded-lg font-semibold transition-colors">
             {data.ctaSecondary}
           </button>
         </div>

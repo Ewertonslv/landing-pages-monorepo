@@ -10,6 +10,8 @@ export const content = {
     subheadline: "Transformamos desafios empresariais em oportunidades de crescimento",
     cta: "Agendar uma conversa",
     ctaSecondary: "Ver case studies",
+    ctaUrl: '#',         // Substitua: link do Calendly ou WhatsApp
+    ctaSecondaryUrl: '#', // Substitua: âncora #cases ou URL externa
     image: "/hero-image.svg"
   },
 

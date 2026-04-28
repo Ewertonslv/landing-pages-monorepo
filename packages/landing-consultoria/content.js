@@ -3,6 +3,7 @@ export const content = {
     headline: "Venda sua consultoria sem gastar R$ 5-8k em agência",
     subheadline: "Landing page que converte 3-7% em apenas 7 dias",
     cta: "Quero minha LP profissional",
+    ctaUrl: '#',  // Substitua: link do WhatsApp ou Calendly
     ctaMicro: "Consultoria gratuita + entrega em 7 dias • Sem contrato",
   },
   abertura: {

@@ -53,7 +53,7 @@ export default function Hero() {
 
         <p className="text-xl mb-2 opacity-90">{content.hero.date}</p>
 
-        <button className="btn-primary mb-4 pulse-ring">
+        <button onClick={() => content.hero.ctaUrl && window.open(content.hero.ctaUrl, '_blank')} className="btn-primary mb-4 pulse-ring">
           {content.hero.cta}
         </button>
 

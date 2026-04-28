@@ -4,10 +4,11 @@ export const content = {
     subheadline: "Inscreva-se agora — apenas 200 vagas disponíveis",
     date: "Próximo: 15 de Maio às 19h00",
     cta: "Garantir meu lugar agora",
+    ctaUrl: '#',  // Substitua: link de inscrição do webinar
     ctaMicro: "Acesso 100% gratuito • Sem cartão de crédito",
     timer: {
       enabled: true,
-      endDate: "2024-05-15T19:00:00"
+      endDate: "2026-06-15T19:00:00"
     }
   },
   problem: {
