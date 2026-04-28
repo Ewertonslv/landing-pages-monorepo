@@ -109,7 +109,6 @@ function App() {
     interesse: '',
     mensagem: ''
   });
-  const [formLoading, setFormLoading] = useState(false);
 
   const handleScheduleCall = () => {
     window.open(CALENDLY_URL, '_blank');
@@ -389,18 +388,22 @@ function App() {
 
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <form
-                onSubmit={async (e) => {
+                onSubmit={(e) => {
                   e.preventDefault();
                   if (!formData.name || !formData.email) {
                     alert('Por favor, preencha nome e email');
                     return;
                   }
-                  setFormLoading(true);
-                  setTimeout(() => {
-                    alert('✅ Mensagem recebida! Você receberá um email de confirmação em segundos.\n\nProximan passo: Agendar sua call em Calendly.');
-                    setFormData({ name: '', email: '', empresa: '', interesse: '', mensagem: '' });
-                    setFormLoading(false);
-                  }, 1000);
+                  const texto = [
+                    `Olá! Tenho interesse em uma landing page.`,
+                    `Nome: ${formData.name}`,
+                    `Email: ${formData.email}`,
+                    formData.empresa   ? `Empresa/Nicho: ${formData.empresa}`   : null,
+                    formData.interesse ? `Interesse: ${formData.interesse}`      : null,
+                    formData.mensagem  ? `Mensagem: ${formData.mensagem}`        : null,
+                  ].filter(Boolean).join('\n');
+                  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`, '_blank');
+                  setFormData({ name: '', email: '', empresa: '', interesse: '', mensagem: '' });
                 }}
                 className="space-y-6"
               >
@@ -460,11 +463,21 @@ function App() {
                 </div>
                 <button
                   type="submit"
-                  disabled={formLoading}
-                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all"
                 >
-                  {formLoading ? 'Enviando...' : 'Enviar e Agendar Chamada'}
+                  Enviar via WhatsApp
                 </button>
+                <p className="text-center text-sm text-gray-500 mt-3">
+                  Prefere agendar uma call?{' '}
+                  <a
+                    href={CALENDLY_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-purple-600 hover:text-purple-700 underline"
+                  >
+                    Clique aqui para o Calendly
+                  </a>
+                </p>
               </form>
 
               <div className="mt-8 pt-8 border-t border-gray-200">
