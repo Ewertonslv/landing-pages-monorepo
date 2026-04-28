@@ -246,10 +246,13 @@ function App() {
                         Agendar Demonstração
                       </button>
                       <button
-                        onClick={() => window.open(`https://github.com/Ewertonslv/landing-pages-monorepo`, '_blank')}
+                        onClick={() => {
+                          const msg = `Olá! Tenho interesse no template: ${selectedTemplate.name}`;
+                          window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+                        }}
                         className="px-6 border-2 border-purple-600 text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-colors"
                       >
-                        Código
+                        WhatsApp
                       </button>
                     </div>
                   </div>
